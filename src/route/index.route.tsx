@@ -1,9 +1,7 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "../pages/home.page";
 
 export default function MainRoute() {
-
 	return (
 		<BrowserRouter>
 			<Routes>

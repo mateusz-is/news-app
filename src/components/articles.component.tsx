@@ -3,25 +3,27 @@ import axios from "axios";
 import { API_KEY } from "const/config";
 import { useDispatch } from "react-redux";
 import { addTotalResults } from "features/articlesReducer.feature";
-import ArticlesList from "./articlesList.component";
-import { Articles as IArticles } from "../interfaces/article.interface";
+import { ArticlesList, ArticlesGrid } from "./";
+import { Article } from "../interfaces/articles.interface";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
-import ArticlesGrid from "./articlesGrid.component";
 import { useSelector } from "react-redux";
+import { RootState } from "store";
 
-export default function Articles() {
-	const [data, setData] = React.useState<IArticles[]>([]);
+export default function ArticlesIndex(): JSX.Element {
+	const [data, setData] = React.useState<Article[]>([]);
 	const [loading, setLoading] = React.useState<boolean>(true);
-	const totalResults = useSelector((state: any) => state.articlesData);
+	const totalResults = useSelector((state: RootState) => state.articlesData);
 	const { show } = totalResults;
 	let { code } = useParams();
 	const dispatch = useDispatch();
-	console.log(totalResults);
+
 	React.useEffect(() => {
 		axios
 			.get(
-				`https://newsapi.org/v2/top-headlines?country=${code}&apiKey=${API_KEY}`
+				`https://newsapi.org/v2/top-headlines?country=${
+					code || `pl`
+				}&apiKey=${API_KEY}`
 			)
 			.then((response) => {
 				setData(response.data.articles);
@@ -32,9 +34,8 @@ export default function Articles() {
 				console.error(error);
 				setLoading(false);
 			});
-	}, [code]);
+	}, [code, dispatch]);
 
-	if (!data) return null;
 	if (loading) return <Typography>Wczytywanie...</Typography>;
 	if (data.length === 0)
 		return <Typography>Nie znaleziono newsów dla tego kraju</Typography>;

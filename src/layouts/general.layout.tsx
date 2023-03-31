@@ -1,17 +1,22 @@
 import React from "react";
 import { Box, ThemeProvider, useMediaQuery } from "@mui/material";
 import { theme } from "theme/general.theme";
-import Header from "components/header.component";
-import NavigationMenu from "components/navigationMenu.component";
-import Footer from "components/footer.component";
+import { NavigationMenu, Header, Footer } from "components";
 
-export default function GeneralLayout({ children }: any): JSX.Element {
-	const [mobileOpen, setMobileOpen] = React.useState(false);
-	const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
+type GeneralLayoutProps = {
+	children: React.ReactNode;
+};
 
-	const handleChangeDrawer = () => {
+export default function GeneralLayout({
+	children,
+}: GeneralLayoutProps): JSX.Element {
+	const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
+	const isSmUp: boolean = useMediaQuery(theme.breakpoints.up("sm"));
+
+	const handleChangeDrawer = React.useCallback(() => {
 		setMobileOpen(!mobileOpen);
-	};
+	}, [mobileOpen]);
+
 	const widthDrawer: number = 200;
 
 	return (

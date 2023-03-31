@@ -9,7 +9,7 @@ import {
 	ListItemText,
 	Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface Flags {
 	alt: string;
@@ -42,10 +42,11 @@ const item = {
 		bgcolor: "rgba(255, 255, 255, 0.08)",
 	},
 };
-export default function NavigationMenu({ ...other }: DrawerProps) {
+
+export default function NavigationMenu({ ...other }: DrawerProps): JSX.Element {
 	const [data, setData] = React.useState<Countries[]>([]);
 	const [loading, setLoading] = React.useState<boolean>(true);
-	const navigate = useNavigate();
+	const navigate: NavigateFunction = useNavigate();
 
 	React.useEffect(() => {
 		axios
@@ -59,7 +60,7 @@ export default function NavigationMenu({ ...other }: DrawerProps) {
 				setLoading(false);
 			});
 	}, []);
-	if (!data) return null;
+
 	return (
 		<Drawer variant="permanent" {...other}>
 			{loading && (

@@ -1,13 +1,10 @@
-import axios from "axios";
-import Articles from "components/articles.component";
-import { API_KEY } from "const/config";
+import { ArticlesIndex } from "../components";
 import GeneralLayout from "layouts/general.layout";
-import React from "react";
 
-export default function HomePage() {
+export default function HomePage(): JSX.Element {
 	return (
 		<GeneralLayout>
-			<Articles />
+			<ArticlesIndex />
 		</GeneralLayout>
 	);
 }

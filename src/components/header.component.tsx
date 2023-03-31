@@ -6,34 +6,44 @@ import {
 	Typography,
 	Button,
 	ToggleButton,
+	styled,
 } from "@mui/material";
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useNavigate } from "react-router-dom";
-import Popup from "./popup.component";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { Popup } from "./";
 import ReorderIcon from "@mui/icons-material/Reorder";
 import { useDispatch } from "react-redux";
 import { changeDisplayList } from "../features/articlesReducer.feature";
 import WindowIcon from "@mui/icons-material/Window";
+import { AppDispatch } from "store";
+
+const ToggleButtonStyled = styled(ToggleButton)({
+	"&.Mui-selected, &.Mui-selected:hover": {
+		color: "#000",
+		backgroundColor: "#fff",
+	},
+});
 
 export default function Header({
 	onDrawerChange,
 }: {
 	onDrawerChange: () => void;
-}) {
-	const [open, setOpen] = React.useState(false);
-	const [selected, setSelected] = React.useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const description = `Największy kłopot przy tym projekcie to brak czasu 🙃 Największa
-	frajda to zdecydowanie praca z Reactem 😁`;
+}): JSX.Element {
+	const [open, setOpen] = React.useState<boolean>(false);
+	const [selected, setSelected] = React.useState<boolean>(false);
+	const handleOpen = React.useCallback(() => setOpen(true), []);
+	const handleClose = React.useCallback(() => setOpen(false), []);
+	const navigate: NavigateFunction = useNavigate();
+	const dispatch: AppDispatch = useDispatch();
 
-	const handleChangeList = () => {
+	const description: string = `Największy kłopot przy tym projekcie to brak czasu 🙃 Największa
+	frajda to zdecydowanie praca z Reactem 😁`;
+	const handleChangeList = React.useCallback(() => {
 		setSelected(!selected);
 		dispatch(changeDisplayList(!selected));
-	};
+	}, [dispatch, selected]);
+
 	return (
 		<React.Fragment>
 			<AppBar color="primary" position="sticky" elevation={1}>
@@ -61,14 +71,14 @@ export default function Header({
 						</Grid>
 						<Grid item xs />
 						<Grid item>
-							<ToggleButton
+							<ToggleButtonStyled
 								value="check"
 								selected={selected}
 								size="small"
 								onChange={handleChangeList}
 							>
 								{!selected ? <WindowIcon /> : <ReorderIcon />}
-							</ToggleButton>
+							</ToggleButtonStyled>
 						</Grid>
 						<Grid item>
 							<Button onClick={handleOpen}>Otwórz popup 😎</Button>

@@ -4,21 +4,26 @@ import {
 	Card,
 	CardContent,
 	Typography,
-	CardMedia,
 } from "@mui/material";
 import React from "react";
-import Articles from "./articles.component";
-import Popup from "./popup.component";
+import { Popup } from "./";
+import { Article } from "interfaces/articles.interface";
 
-export default function ArticlesList({ articles }: any) {
-	const [open, setOpen] = React.useState(false);
+interface ArticlesGridProps {
+	articles: Article[];
+}
+
+export default function ArticlesList({
+	articles,
+}: ArticlesGridProps): JSX.Element {
+	const [open, setOpen] = React.useState<boolean>(false);
 	const [data, setData] = React.useState<any>([]);
-	const handleOpen = (data: any) => {
+	const handleOpen = React.useCallback((data: Article) => {
 		setData(data);
 		setOpen(true);
-	};
-	const handleClose = () => setOpen(false);
-    console.log(open)
+	}, []);
+	const handleClose = React.useCallback(() => setOpen(false), []);
+
 	return (
 		<>
 			{articles.map((data: any) => (
@@ -36,7 +41,7 @@ export default function ArticlesList({ articles }: any) {
 									{data.title}
 								</Typography>
 								<Typography variant="subtitle1" color="text.secondary">
-									{data.author}
+									{data.source.name}
 								</Typography>
 								<Typography variant="caption">{data.publishedAt}</Typography>
 							</CardContent>

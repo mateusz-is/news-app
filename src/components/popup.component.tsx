@@ -1,9 +1,18 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Card, CardContent, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
+
+interface PopupProps {
+	isOpen: boolean;
+	onClose: () => void;
+	author?: string;
+	title?: string;
+	content?: string;
+	description?: string;
+	url?: string;
+}
 
 const style = {
 	position: "absolute",
@@ -23,10 +32,10 @@ export default function Popup({
 	onClose,
 	author,
 	title,
+	content,
 	description,
-	shortDesc,
 	url,
-}: any) {
+}: PopupProps): JSX.Element {
 	return (
 		<div>
 			<Modal
@@ -41,17 +50,23 @@ export default function Popup({
 								{title}
 							</Typography>
 						)}
+						{content && (
+							<Typography variant="body1" color="text.secondary">
+								{content}
+							</Typography>
+						)}
 						{description && (
-							<Typography variant="subtitle1" color="text.secondary">
+							<Typography variant="body1" color="text.secondary">
 								{description}
 							</Typography>
 						)}
-
 						{author && <Typography variant="caption">{author}</Typography>}
 						{url && (
 							<>
 								<Divider sx={{ mb: 2, mt: 4 }} />
-								<Button href={url} target="_blank">Przjedź do artykułu</Button>
+								<Button href={url} target="_blank">
+									Przjedź do artykułu
+								</Button>
 							</>
 						)}
 					</Box>

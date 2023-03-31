@@ -1,21 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export const articles = createSlice({
+interface Article {
+	qty: number;
+	show: boolean;
+}
+
+const articles = createSlice({
 	name: "articles",
-	initialState: [],
+	initialState: {
+		qty: 0,
+		show: false,
+	} as Article,
 	reducers: {
-		addTotalResults: (state: any, action): any => {
-			const qty = action.payload;
-			return { ...state, qty };
+		addTotalResults: (state, action: PayloadAction<number>) => {
+			state.qty = action.payload;
 		},
-		changeDisplayList: (state: any, action) => {
-			const show = action.payload;
-			return { ...state, show };
+		changeDisplayList: (state, action: PayloadAction<boolean>) => {
+			state.show = action.payload;
 		},
 	},
 });
-// this is for dispatch
-export const { addTotalResults, changeDisplayList } = articles.actions;
 
-// this is for configureStore
+export const { addTotalResults, changeDisplayList } = articles.actions;
 export default articles.reducer;
