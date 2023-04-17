@@ -66,7 +66,7 @@ export default function Header({
 								component="h1"
 								sx={{ cursor: "pointer" }}
 							>
-								gnNews
+								News App
 							</Typography>
 						</Grid>
 						<Grid item xs />
