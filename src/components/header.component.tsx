@@ -37,8 +37,7 @@ export default function Header({
 	const navigate: NavigateFunction = useNavigate();
 	const dispatch: AppDispatch = useDispatch();
 
-	const description: string = `Największy kłopot przy tym projekcie to brak czasu 🙃 Największa
-	frajda to zdecydowanie praca z Reactem 😁`;
+	const description: string = `Popup`;
 	const handleChangeList = React.useCallback(() => {
 		setSelected(!selected);
 		dispatch(changeDisplayList(!selected));
