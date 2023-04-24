@@ -10,38 +10,9 @@ import {
 	Typography,
 } from "@mui/material";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-
-interface Flags {
-	alt: string;
-	png: string;
-	svg: string;
-}
-
-interface Name {
-	common: string;
-	official: string;
-	nativeName: {
-		[key: string]: {
-			[key: string]: string;
-		};
-	};
-}
-
-interface Countries {
-	flags: Flags;
-	name: Name;
-	cca2: string;
-}
-
-const item = {
-	py: "2px",
-	px: 3,
-	cursor: "pointer",
-	color: "rgba(255, 255, 255, 0.7)",
-	"&:hover, &:focus": {
-		bgcolor: "rgba(255, 255, 255, 0.08)",
-	},
-};
+import { API_ROUTE } from "../config/api.route";
+import { Countries } from "../interfaces/countries.interface";
+import { item } from "theme/general.theme";
 
 export default function NavigationMenu({ ...other }: DrawerProps): JSX.Element {
 	const [data, setData] = React.useState<Countries[]>([]);
@@ -50,7 +21,7 @@ export default function NavigationMenu({ ...other }: DrawerProps): JSX.Element {
 
 	React.useEffect(() => {
 		axios
-			.get("https://restcountries.com/v3.1/region/europe")
+			.get(API_ROUTE.COUNTRIES)
 			.then((response) => {
 				setData(response.data);
 				setLoading(false);

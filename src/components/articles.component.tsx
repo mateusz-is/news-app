@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { API_KEY } from "const/config";
+import { API_KEY } from "config/config";
 import { useDispatch } from "react-redux";
 import { addTotalResults } from "features/articlesReducer.feature";
 import { ArticlesList, ArticlesGrid } from "./";
@@ -34,14 +34,13 @@ export default function ArticlesIndex(): JSX.Element {
 				console.error(error);
 				setLoading(false);
 			});
-	}, [code, dispatch]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [code]);
 
 	if (loading) return <Typography>Wczytywanie...</Typography>;
 	if (data.length === 0)
 		return <Typography>Nie znaleziono newsów dla tego kraju</Typography>;
-	return show ? (
-		<ArticlesGrid articles={data} />
-	) : (
-		<ArticlesList articles={data} />
-	);
+
+	if (show) return <ArticlesGrid articles={data} />;
+	return <ArticlesList articles={data} />;
 }

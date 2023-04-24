@@ -8,3 +8,7 @@ export interface Article {
 	publishedAt: string;
 	urlToImage: string;
 }
+
+export interface ArticlesGridProps {
+	articles: Article[];
+}

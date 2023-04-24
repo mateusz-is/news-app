@@ -3,29 +3,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Divider } from "@mui/material";
-
-interface PopupProps {
-	isOpen: boolean;
-	onClose: () => void;
-	author?: string;
-	title?: string;
-	content?: string;
-	description?: string;
-	url?: string;
-}
-
-const style = {
-	position: "absolute",
-	width: 650,
-	textAlign: "center",
-	top: "50%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	bgcolor: "background.paper",
-	boxShadow: 8,
-	p: 4,
-	display: "flex",
-};
+import { popupStyle } from "theme/general.theme";
+import { PopupProps } from "../interfaces/popup.interface";
 
 export default function Popup({
 	isOpen,
@@ -43,7 +22,7 @@ export default function Popup({
 				onClose={onClose}
 				aria-describedby="popup-description"
 			>
-				<Box sx={style}>
+				<Box sx={popupStyle}>
 					<Box sx={{ flex: 1 }}>
 						{title && (
 							<Typography component="h2" variant="h6">

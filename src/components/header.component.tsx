@@ -5,8 +5,6 @@ import {
 	IconButton,
 	Typography,
 	Button,
-	ToggleButton,
-	styled,
 } from "@mui/material";
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,13 +15,7 @@ import { useDispatch } from "react-redux";
 import { changeDisplayList } from "../features/articlesReducer.feature";
 import WindowIcon from "@mui/icons-material/Window";
 import { AppDispatch } from "store";
-
-const ToggleButtonStyled = styled(ToggleButton)({
-	"&.Mui-selected, &.Mui-selected:hover": {
-		color: "#000",
-		backgroundColor: "#fff",
-	},
-});
+import { ToggleButtonStyled } from "../theme/general.theme";
 
 export default function Header({
 	onDrawerChange,
@@ -41,7 +33,8 @@ export default function Header({
 	const handleChangeList = React.useCallback(() => {
 		setSelected(!selected);
 		dispatch(changeDisplayList(!selected));
-	}, [dispatch, selected]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selected]);
 
 	return (
 		<React.Fragment>

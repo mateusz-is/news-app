@@ -1,4 +1,4 @@
-import { Theme, createTheme } from "@mui/material";
+import { Theme, ToggleButton, createTheme, styled } from "@mui/material";
 
 let theme: Theme = createTheme({
 	palette: {
@@ -67,4 +67,34 @@ theme = {
 	},
 };
 
-export { theme };
+const ToggleButtonStyled = styled(ToggleButton)({
+	"&.Mui-selected, &.Mui-selected:hover": {
+		color: "#000",
+		backgroundColor: "#fff",
+	},
+});
+
+const item = {
+	py: "2px",
+	px: 3,
+	cursor: "pointer",
+	color: "rgba(255, 255, 255, 0.7)",
+	"&:hover, &:focus": {
+		bgcolor: "rgba(255, 255, 255, 0.08)",
+	},
+};
+
+const popupStyle = {
+	position: "absolute",
+	width: 650,
+	textAlign: "center",
+	top: "50%",
+	left: "50%",
+	transform: "translate(-50%, -50%)",
+	bgcolor: "background.paper",
+	boxShadow: 8,
+	p: 4,
+	display: "flex",
+};
+
+export { theme, ToggleButtonStyled, item, popupStyle };
