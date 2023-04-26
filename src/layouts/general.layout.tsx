@@ -17,7 +17,7 @@ export default function GeneralLayout({
 		setMobileOpen(!mobileOpen);
 	}, [mobileOpen]);
 
-	const widthDrawer: number = 200;
+	const widthDrawer = 200;
 
 	return (
 		<React.Fragment>

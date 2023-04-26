@@ -1,3 +1,4 @@
+import React from 'react'
 import { ArticlesIndex } from "../components";
 import GeneralLayout from "layouts/general.layout";
 

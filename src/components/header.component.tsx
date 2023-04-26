@@ -11,10 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Popup } from "./";
 import ReorderIcon from "@mui/icons-material/Reorder";
-import { useDispatch } from "react-redux";
-import { changeDisplayList } from "../features/articlesReducer.feature";
 import WindowIcon from "@mui/icons-material/Window";
-import { AppDispatch } from "store";
 import { ToggleButtonStyled } from "../theme/general.theme";
 
 export default function Header({
@@ -27,13 +24,10 @@ export default function Header({
 	const handleOpen = React.useCallback(() => setOpen(true), []);
 	const handleClose = React.useCallback(() => setOpen(false), []);
 	const navigate: NavigateFunction = useNavigate();
-	const dispatch: AppDispatch = useDispatch();
 
-	const description: string = `Popup`;
+	const description = `Popup`;
 	const handleChangeList = React.useCallback(() => {
 		setSelected(!selected);
-		dispatch(changeDisplayList(!selected));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selected]);
 
 	return (

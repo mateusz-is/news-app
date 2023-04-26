@@ -2,7 +2,6 @@ import * as React from "react";
 import Drawer, { DrawerProps } from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Box from "@mui/material/Box";
-import axios from "axios";
 import {
 	ListItem,
 	ListItemIcon,
@@ -10,36 +9,21 @@ import {
 	Typography,
 } from "@mui/material";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { API_ROUTE } from "../config/api.route";
-import { Countries } from "../interfaces/countries.interface";
 import { item } from "theme/general.theme";
+import { useGetCountries } from "api/countries";
 
 export default function NavigationMenu({ ...other }: DrawerProps): JSX.Element {
-	const [data, setData] = React.useState<Countries[]>([]);
-	const [loading, setLoading] = React.useState<boolean>(true);
 	const navigate: NavigateFunction = useNavigate();
-
-	React.useEffect(() => {
-		axios
-			.get(API_ROUTE.COUNTRIES)
-			.then((response) => {
-				setData(response.data);
-				setLoading(false);
-			})
-			.catch((error) => {
-				console.error(error);
-				setLoading(false);
-			});
-	}, []);
+	const { data: countries, isLoading } = useGetCountries("europe");
 
 	return (
 		<Drawer variant="permanent" {...other}>
-			{loading && (
-				<Typography sx={{ color: "#fff" }}>Wczytywanie...</Typography>
+			{isLoading && (
+				<Typography sx={{ color: "#fff", p: 2 }}>Wczytywanie...</Typography>
 			)}
 			<List disablePadding>
-				{data.map(({ flags, name, cca2 }) => (
-					<Box key={name.common} sx={{ bgcolor: "#101F33" }}>
+				{countries?.map(({ flags, name, cca2 }, index) => (
+					<Box key={index} sx={{ bgcolor: "#101F33" }}>
 						<ListItemIcon></ListItemIcon>
 						<ListItem sx={{ ...item }}>
 							<ListItemText

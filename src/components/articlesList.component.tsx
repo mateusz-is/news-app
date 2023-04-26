@@ -1,3 +1,4 @@
+import React from 'react'
 import {
 	Grid,
 	CardActionArea,
@@ -12,7 +13,7 @@ export default function ArticlesList({
 }: ArticlesGridProps): JSX.Element {
 	return (
 		<>
-			{articles.map((data: Article) => (
+			{articles?.map((data: Article) => (
 				<Grid item xs={12} key={data.title} sx={{ mb: 2 }}>
 					<CardActionArea component="a" href="#">
 						<Card sx={{ display: "flex" }}>

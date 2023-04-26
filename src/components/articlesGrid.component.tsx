@@ -1,3 +1,4 @@
+import React from 'react'
 import { Grid, Card, CardContent, Typography, CardMedia } from "@mui/material";
 import { Article, ArticlesGridProps } from "interfaces/articles.interface";
 

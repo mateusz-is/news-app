@@ -12,3 +12,9 @@ export interface Article {
 export interface ArticlesGridProps {
 	articles: Article[];
 }
+
+export interface ArticlesApi {
+	status: string;
+	totalResults: number;
+	articles: Article[];
+}
