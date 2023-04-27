@@ -4,18 +4,24 @@ import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useGetArticles } from "api/articles";
 import { ArticlesApi } from "interfaces/articles.interface";
+import { useArticles } from "../hooks/articles/useArticles.hook";
 
 export default function ArticlesIndex(): JSX.Element {
 	const { code } = useParams() as { code: string };
+	const { articles, onChangeAmoutView } = useArticles();
 	const { data, isLoading } = useGetArticles(code) as {
 		data: ArticlesApi;
 		isLoading: boolean;
 	};
-	const show = true;
+
+	React.useEffect(() => {
+		if (!isLoading) onChangeAmoutView(data.totalResults);
+	}, [isLoading]);
+
 	if (isLoading) return <Typography>Wczytywanie...</Typography>;
 	if (data?.articles?.length === 0)
 		return <Typography>Nie znaleziono newsów dla tego kraju</Typography>;
 
-	if (show) return <ArticlesGrid articles={data?.articles} />;
+	if (articles.grid) return <ArticlesGrid articles={data?.articles} />;
 	return <ArticlesList articles={data?.articles} />;
 }

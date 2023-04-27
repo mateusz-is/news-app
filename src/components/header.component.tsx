@@ -13,6 +13,7 @@ import { Popup } from "./";
 import ReorderIcon from "@mui/icons-material/Reorder";
 import WindowIcon from "@mui/icons-material/Window";
 import { ToggleButtonStyled } from "../theme/general.theme";
+import { useArticles } from "hooks/articles/useArticles.hook";
 
 export default function Header({
 	onDrawerChange,
@@ -20,15 +21,14 @@ export default function Header({
 	onDrawerChange: () => void;
 }): JSX.Element {
 	const [open, setOpen] = React.useState<boolean>(false);
-	const [selected, setSelected] = React.useState<boolean>(false);
 	const handleOpen = React.useCallback(() => setOpen(true), []);
 	const handleClose = React.useCallback(() => setOpen(false), []);
 	const navigate: NavigateFunction = useNavigate();
-
+	const { onChangeView, articles } = useArticles();
 	const description = `Popup`;
 	const handleChangeList = React.useCallback(() => {
-		setSelected(!selected);
-	}, [selected]);
+		onChangeView();
+	}, [articles]);
 
 	return (
 		<React.Fragment>
@@ -59,11 +59,11 @@ export default function Header({
 						<Grid item>
 							<ToggleButtonStyled
 								value="check"
-								selected={selected}
+								selected={articles.grid}
 								size="small"
 								onChange={handleChangeList}
 							>
-								{!selected ? <WindowIcon /> : <ReorderIcon />}
+								{!articles.grid ? <WindowIcon /> : <ReorderIcon />}
 							</ToggleButtonStyled>
 						</Grid>
 						<Grid item>
