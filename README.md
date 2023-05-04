@@ -1,5 +1,4 @@
-Aplikacja blogowa
-## Aplikacja blogowa
+## Aplikacja "NewsApp"
 Pozwala na przeglądanie artykułów z różnych krajów na całym świecie. Lista krajów jest pobierana z zewnętrznego API, a następnie wyświetlana w menu po lewej stronie. Po wybraniu kraju, aplikacja pobiera artykuły blogowe związane z tym krajem i wyświetla je na ekranie. Użytkownik ma możliwość przejścia do każdego artykułu oraz przeczytania szczegółów.
 
 ## Instalacja
