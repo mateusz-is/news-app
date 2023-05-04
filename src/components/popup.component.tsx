@@ -1,20 +1,18 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Divider } from "@mui/material";
 import { popupStyle } from "theme/general.theme";
 import { PopupProps } from "../interfaces/popup.interface";
+import { Button } from "@mui/material";
 
 export default function Popup({
 	isOpen,
 	onClose,
-	author,
 	title,
-	content,
 	description,
-	url,
+	cta,
+	cta_label,
 }: PopupProps) {
 	return (
 		<Modal open={isOpen} onClose={onClose} aria-describedby="popup-description">
@@ -25,25 +23,12 @@ export default function Popup({
 							{title}
 						</Typography>
 					)}
-					{content && (
-						<Typography variant="body1" color="text.secondary">
-							{content}
-						</Typography>
-					)}
 					{description && (
 						<Typography variant="body1" color="text.secondary">
 							{description}
 						</Typography>
 					)}
-					{author && <Typography variant="caption">{author}</Typography>}
-					{url && (
-						<>
-							<Divider sx={{ mb: 2, mt: 4 }} />
-							<Button href={url} target="_blank">
-								Przjedź do artykułu
-							</Button>
-						</>
-					)}
+					{cta && <Button href={cta}>{cta_label}</Button>}
 				</Box>
 			</Box>
 		</Modal>

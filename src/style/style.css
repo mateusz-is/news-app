@@ -1,0 +1,125 @@
+:root {
+    --main-font: "Roboto", "Helvetica", "Arial", sans-serif;
+    --color-white: #fff;
+    --color-lightGray: #3f3f3f;
+    --color-overlay: rgba(0, 0, 0, .5);
+}
+
+body {
+    margin: 0
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #101f33;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #243b5a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #243b5a;
+}
+
+.custom-subtitle {
+    font-family: var(--main-font);
+    font-size: .9rem;
+    background-color: var(--color-lightGray);
+    color: var(--color-white);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.content-box .content h2 {
+    font-family: var(--main-font);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.content-box .content p {
+    font-family: var(--main-font);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.content-box .content p::first-letter {
+    font-weight: 900;
+    font-size: 1.6rem;
+}
+
+
+.hero-baner {
+    position: relative;
+    background-color: var(--color-lightGray);
+    color: var(--color-white);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 350px;
+}
+
+
+.hero-baner .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--color-overlay)
+}
+
+.hero-baner--content {
+    display: flex;
+}
+
+.hero-baner--content .col-6 {
+    max-width: 50%;
+}
+
+.hero-baner--content-relative {
+    position: relative;
+    padding: 30px;
+}
+
+.hero-baner--content-h1 {
+    font-family: var(--main-font);
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.hero-baner--content-h5 {
+    font-family: var(--main-font);
+    font-weight: 300;
+    font-size: 1.3rem;
+}
+
+@media screen and (max-width: 1600px) {
+    .hero-baner--content .col-6 {
+        max-width: inherit;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content-box .content p::first-letter {
+        font-weight: inherit;
+        font-size: inherit;
+    }
+
+    .hero-baner--content-relative {
+        padding: 10px;
+    }
+
+    .hero-baner--content-h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-baner--content-h5 {
+        font-family: var(--main-font);
+        font-weight: 300;
+        font-size: 1.1rem;
+    }
+}

@@ -14,6 +14,7 @@ import ReorderIcon from "@mui/icons-material/Reorder";
 import WindowIcon from "@mui/icons-material/Window";
 import { ToggleButtonStyled } from "../theme/general.theme";
 import { useArticles } from "hooks/articles/useArticles.hook";
+import { popupConfig } from "../config/popup.config";
 
 export default function Header({
 	onDrawerChange,
@@ -25,7 +26,6 @@ export default function Header({
 	const handleClose = React.useCallback(() => setOpen(false), []);
 	const navigate: NavigateFunction = useNavigate();
 	const { onChangeView, articles } = useArticles();
-	const description = `Popup`;
 	const handleChangeList = React.useCallback(() => {
 		onChangeView();
 	}, [articles]);
@@ -67,12 +67,10 @@ export default function Header({
 							</ToggleButtonStyled>
 						</Grid>
 						<Grid item>
-							<Button onClick={handleOpen}>Otwórz popup 😎</Button>
-							<Popup
-								isOpen={open}
-								onClose={handleClose}
-								description={description}
-							/>
+							<Button onClick={handleOpen} sx={{ p: 1 }}>
+								Kontakt
+							</Button>
+							<Popup isOpen={open} onClose={handleClose} {...popupConfig} />
 						</Grid>
 					</Grid>
 				</Toolbar>

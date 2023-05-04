@@ -1,34 +1,23 @@
-import React, { ReactNode, createContext, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
+import { articleReducer } from "./article.reducer";
 import {
-	ArticlesType,
-	Types,
-	articleReducer,
 	ArticleActions,
-} from "./article.reducer";
+	ArticleProviderProps,
+	InitialStateType,
+	ReducerValues,
+	Types,
+} from "interfaces";
 
 const initialState = {
 	articles: {
 		grid: false,
 		amount: 0,
 	},
-	// onChangeView: () => null,
+	onChangeView: () => null,
+	onChangeAmountView: () => null,
 };
 
-type InitialStateType = {
-	articles: ArticlesType;
-};
-
-type ReducerValues = {
-	articles: ArticlesType;
-	onChangeView: () => void;
-	onChangeAmoutView: (amount: number) => void;
-};
-
-interface ArticleProviderProps {
-	children: ReactNode;
-}
-
-export const ArticleContext = createContext<any>(initialState);
+export const ArticleContext = createContext<ReducerValues>(initialState);
 
 const mainReducer = (
 	{ articles }: InitialStateType,
@@ -59,9 +48,9 @@ export const ArticleProvider = ({ children }: ArticleProviderProps) => {
 	};
 
 	const value: ReducerValues = {
-		onChangeView: handleChangeView,
-		onChangeAmoutView: handleChangeAmount,
 		...state,
+		onChangeView: handleChangeView,
+		onChangeAmountView: handleChangeAmount,
 	};
 
 	return (

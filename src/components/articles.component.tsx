@@ -7,15 +7,15 @@ import { ArticlesApi } from "interfaces/articles.interface";
 import { useArticles } from "../hooks/articles/useArticles.hook";
 
 export default function ArticlesIndex(): JSX.Element {
+	const { articles, onChangeAmountView } = useArticles();
 	const { code } = useParams() as { code: string };
-	const { articles, onChangeAmoutView } = useArticles();
 	const { data, isLoading } = useGetArticles(code) as {
 		data: ArticlesApi;
 		isLoading: boolean;
 	};
 
 	React.useEffect(() => {
-		if (!isLoading) onChangeAmoutView(data.totalResults);
+		if (!isLoading) onChangeAmountView(data.totalResults);
 	}, [isLoading]);
 
 	if (isLoading) return <Typography>Wczytywanie...</Typography>;

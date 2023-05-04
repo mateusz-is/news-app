@@ -1,14 +1,26 @@
-import React from 'react'
+import React from "react";
 import { Grid, Card, CardContent, Typography, CardMedia } from "@mui/material";
 import { Article, ArticlesGridProps } from "interfaces/articles.interface";
+import { useNavigate } from "react-router-dom";
 
 export default function ArticlesGrid({
 	articles,
 }: ArticlesGridProps): JSX.Element {
+	const navigate = useNavigate();
+
 	return (
 		<Grid container spacing={4}>
-			{articles.map((data: Article) => (
-				<Grid item xs={12} sm={6} md={4} lg={3} key={data.title} sx={{ mb: 2 }}>
+			{articles.map((data: Article, index: number) => (
+				<Grid
+					item
+					xs={12}
+					sm={6}
+					md={4}
+					lg={3}
+					key={data.title}
+					sx={{ mb: 2 }}
+					onClick={() => navigate(`news/${index}`)}
+				>
 					<Card
 						sx={{
 							height: "100%",
