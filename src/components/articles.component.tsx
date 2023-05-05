@@ -9,7 +9,7 @@ import { useArticles } from "../hooks/articles/useArticles.hook";
 export default function ArticlesIndex(): JSX.Element {
 	const { articles, onChangeAmountView } = useArticles();
 	const { code } = useParams() as { code: string };
-	const { data, isLoading } = useGetArticles(code) as {
+	const { data, isLoading } = useGetArticles(code || "pl") as {
 		data: ArticlesApi;
 		isLoading: boolean;
 	};
