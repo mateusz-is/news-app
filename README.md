@@ -6,7 +6,9 @@ Pozwala na przeglądanie artykułów z różnych krajów na całym świecie. Lis
 - Sklonuj to repozytorium `git clone https://github.com/mateusz-is/news-app.git`
 - Otwórz terminal w głównym katalogu projektu.
 - Uruchom `npm install` aby zainstalować wszystkie wymagane zależności.
-- Uruchom `npm start` aby uruchomić aplikację w przeglądarce.
+- Wykonaj komendę `npm start` aby uruchomić aplikację w przeglądarce.
+- Wykonaj komendę `npm test` aby uruchomić testy jednostkowe.
+- Aby uruchomić wszystkie testy wykonaj komendę `npm test` oraz wciśnij przycisk `a`
 
 ## Użytkowanie
 
